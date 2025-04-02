@@ -1,36 +1,199 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next Foods 🍔
 
-## Getting Started
+Projeto desenvolvido durante a Full Stack Week 8.0, uma plataforma de delivery de comida com foco em restaurantes.
+URL: https://foods.gzguidetti.com
 
-First, run the development server:
+## 🚀 Tecnologias Utilizadas
+
+- **Frontend**:
+
+  - Next.js 15
+  - React 19
+  - TypeScript
+  - Tailwind CSS
+  - shadcn/ui
+  - Lucide Icons
+  - Sonner (Toasts)
+  - React Hook Form
+  - Zod (Validação)
+
+- **Backend**:
+
+  - Prisma ORM
+  - PostgreSQL
+  - Server Actions (Next.js)
+  - Stripe (Pagamentos)
+
+- **Hospedagem**:
+  - Vercel
+  - PostgreSQL (Railway)
+
+## 📋 Pré-requisitos
+
+- Node.js 18+
+- PostgreSQL
+- Git
+- Conta Stripe (para pagamentos)
+- Conta Vercel (para deploy)
+
+## 🔧 Instalação
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/seu-usuario/next-foods.git
+cd next-foods
+```
+
+2. Instale as dependências:
+
+```bash
+npm install
+```
+
+3. Configure as variáveis de ambiente:
+   Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
+
+```env
+DATABASE_URL="postgresql://seu-usuario:sua-senha@localhost:5432/fsw-donalds"
+
+# Stripe
+STRIPE_SECRET_KEY="sk_test_..."
+STRIPE_WEBHOOK_SECRET="whsec_..."
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_..."
+
+# Vercel
+VERCEL_URL="foods.gzguidetti.com"
+```
+
+4. Execute as migrações do banco de dados:
+
+```bash
+npx prisma migrate dev
+```
+
+5. Inicie o servidor de desenvolvimento:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🏗️ Estrutura do Projeto
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+next-foods/
+├── prisma/              # Configurações e esquema do Prisma
+├── public/              # Arquivos estáticos
+├── src/
+│   ├── app/             # Rotas e páginas da aplicação
+│   │   ├── [slug]/      # Páginas dinâmicas do restaurante
+│   │   ├── actions.ts   # Server Actions
+│   │   ├── layout.tsx   # Layout principal
+│   │   └── page.tsx     # Página inicial
+│   ├── components/      # Componentes reutilizáveis
+│   │   ├── ui/          # Componentes de UI
+│   │   └── ...          # Outros componentes
+│   ├── lib/             # Utilitários e configurações
+│   └── styles/          # Estilos globais
+├── .eslintrc.json       # Configurações do ESLint
+├── .prettierrc          # Configurações do Prettier
+├── next.config.js       # Configurações do Next.js
+├── package.json         # Dependências e scripts
+├── postcss.config.js    # Configurações do PostCSS
+└── tailwind.config.js   # Configurações do Tailwind
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📦 Funcionalidades
 
-## Learn More
+### Página Inicial
 
-To learn more about Next.js, take a look at the following resources:
+- Listagem de restaurantes em cards
+- Design responsivo e otimizado para mobile
+- Navegação para páginas individuais dos restaurantes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Páginas de Restaurante
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Menu de produtos organizado por categorias
+- Carrinho de compras
+- Formulário de checkout
+- Gerenciamento de pedidos
 
-## Deploy on Vercel
+### Carrinho de Compras
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Adição/remoção de produtos
+- Ajuste de quantidades
+- Cálculo automático do total
+- Persistência dos dados
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Pagamentos
+
+- Integração com Stripe
+- Checkout seguro
+- Suporte a múltiplos métodos de pagamento
+- Webhooks para atualização de status
+- Recibos automáticos
+
+## 🎨 Design System
+
+O projeto utiliza um design system personalizado com as seguintes características:
+
+### Cores
+
+- Primária: Amarelo (#FFB800)
+- Fundo: Branco
+- Texto: Cinza escuro
+- Acentos: Tons de cinza
+
+### Tipografia
+
+- Fonte: Poppins
+- Pesos: 100 a 900
+- Tamanhos responsivos
+
+### Componentes
+
+- Cards
+- Botões
+- Formulários
+- Modais
+- Toasts
+- E mais...
+
+## 🚀 Deploy
+
+O projeto está hospedado na Vercel e pode ser acessado em [foods.gzguidetti.com](https://foods.gzguidetti.com).
+
+### Configuração do Deploy
+
+1. Faça login na [Vercel](https://vercel.com)
+2. Importe o repositório
+3. Configure as variáveis de ambiente:
+   - `DATABASE_URL`
+   - `STRIPE_SECRET_KEY`
+   - `STRIPE_WEBHOOK_SECRET`
+   - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
+4. Configure o domínio personalizado (opcional)
+5. Deploy automático com GitHub
+
+## 🛠️ Scripts Disponíveis
+
+- `npm run dev`: Inicia o servidor de desenvolvimento
+- `npm run build`: Gera a build de produção
+- `npm run start`: Inicia o servidor de produção
+- `npm run lint`: Executa o linter
+- `npm run prepare`: Configura o Husky
+- `npm run postinstall`: Gera o cliente do Prisma
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 🙏 Agradecimentos
+
+- [FullStackClub](https://www.fullstackclub.com.br/) pela Full Stack Week 8.0
+- [shadcn/ui](https://ui.shadcn.com/) pelos componentes
+- [Prisma](https://www.prisma.io/) pelo ORM
+- [Next.js](https://nextjs.org/) pelo framework
+- [Tailwind CSS](https://tailwindcss.com/) pelos estilos
+- [Stripe](https://stripe.com/) pela plataforma de pagamentos
+- [Vercel](https://vercel.com/) pela hospedagem
