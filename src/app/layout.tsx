@@ -13,7 +13,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "FSW Donalds",
+  title: "Next Foods",
   description: "Projeto desenvolvido durante a Full Stack Week 8.0",
 };
 
