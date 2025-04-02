@@ -71,5 +71,7 @@ export const createOrder = async (input: CreateOrderInput) => {
     },
   });
 
-  redirect(`/${restaurant.slug}/orders`);
+  redirect(
+    `/${restaurant.slug}/orders?cpf=${removeCpfPunctuation(customerCpf)}`,
+  );
 };
