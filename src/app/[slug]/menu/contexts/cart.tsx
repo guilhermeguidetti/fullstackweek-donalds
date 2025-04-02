@@ -39,12 +39,15 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const total = products.reduce((acc, product) => {
     return acc + product.price * product.quantity;
   }, 0);
+
   const totalQuantity = products.reduce((acc, product) => {
     return acc + product.quantity;
   }, 0);
+
   const toggleCart = () => {
     setIsOpen((prev) => !prev);
   };
+
   const addProduct = (product: CartProduct) => {
     const productIsAlreadyOnTheCart = products.some(
       (prevProduct) => prevProduct.id === product.id,
